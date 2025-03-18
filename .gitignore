@@ -176,3 +176,5 @@ cython_debug/
 # Project files
 input.txt
 list.json
+averages.json
+graph.png
