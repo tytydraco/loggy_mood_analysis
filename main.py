@@ -68,6 +68,10 @@ for timestamp_sot, rating in averages.items():
     data_points.append((timestamp_sot, rating, pretty_date))
 
 data_points.sort(key=lambda x: x[0])
+
+# Uncomment to take last 30 days
+# data_points = data_points[-30:]
+
 x_values = [x[0] for x in data_points]
 y_values = [x[1] for x in data_points]
 x_labels = [x[2] for x in data_points]
@@ -79,7 +83,11 @@ smooth_y_values = xy_spline(smooth_x_values)
 plt.xticks(rotation=45, ha='right')
 plt.plot(smooth_x_values, smooth_y_values)
 plt.xticks(x_values, x_labels)
-plt.subplots_adjust(bottom=0.2)
+plt.yticks(
+    [0, 1, 2, 3, 4],
+    ['-2 Horrendous', '-1 Very bad', '+0 Not good', '+1 Decent', '+2 Excellent']
+)
+plt.subplots_adjust(bottom=0.2, left=0.2)
 plt.savefig('graph.png')
 
 plt.show()
